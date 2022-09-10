@@ -20,6 +20,9 @@ public class Product {
     private String status;
     private String summary;
 
+    public Product() {
+    }
+
     public Long getId() {
         return id;
     }
