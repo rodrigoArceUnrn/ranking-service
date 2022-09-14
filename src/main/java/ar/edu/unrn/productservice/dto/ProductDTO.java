@@ -1,6 +1,7 @@
 package ar.edu.unrn.productservice.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ProductDTO {
 
@@ -12,6 +13,12 @@ public class ProductDTO {
     private String format;
     private String status;
     private String summary;
+
+    private GenderDTO gender;
+
+    private List<PersonDTO> personList;
+
+    private List<DiscountDTO> discountList;
 
     public Long getId() {
         return id;
@@ -77,4 +84,27 @@ public class ProductDTO {
         this.summary = summary;
     }
 
+    public GenderDTO getGender() {
+        return gender;
+    }
+
+    public void setGender(GenderDTO gender) {
+        this.gender = gender;
+    }
+
+    public List<PersonDTO> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<PersonDTO> personList) {
+        this.personList = personList;
+    }
+
+    public List<DiscountDTO> getDiscountList() {
+        return discountList;
+    }
+
+    public void setDiscountList(List<DiscountDTO> discountList) {
+        this.discountList = discountList;
+    }
 }
