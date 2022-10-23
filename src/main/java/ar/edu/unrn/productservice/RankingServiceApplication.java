@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class ProductServiceApplication {
+public class RankingServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProductServiceApplication.class, args);
+        SpringApplication.run(RankingServiceApplication.class, args);
     }
 
     @Bean

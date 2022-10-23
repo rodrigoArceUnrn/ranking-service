@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ar.edu.unrn</groupId>
-	<artifactId>product-service</artifactId>
+	<artifactId>ranking-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>product-service</name>
-	<description>Microservicio sobre Productos.</description>
+	<name>ranking-service</name>
+	<description>Microservicio sobre Ranking de los productos.</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
