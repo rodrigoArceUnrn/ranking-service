@@ -1,4 +1,4 @@
-package ar.edu.unrn.productservice;
+package ar.edu.unrn.rankingservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

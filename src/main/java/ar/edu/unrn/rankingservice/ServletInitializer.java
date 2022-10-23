@@ -1,4 +1,4 @@
-package ar.edu.unrn.productservice;
+package ar.edu.unrn.rankingservice;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

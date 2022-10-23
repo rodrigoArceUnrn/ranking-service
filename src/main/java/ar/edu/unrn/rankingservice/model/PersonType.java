@@ -1,4 +1,4 @@
-package ar.edu.unrn.productservice.model;
+package ar.edu.unrn.rankingservice.model;
 
 import java.io.Serializable;
 

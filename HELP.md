@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'ar.edu.unrn.product-service' is invalid and this project uses 'ar.edu.unrn.productservice' instead.
+* The original package name 'ar.edu.unrn.product-service' is invalid and this project uses 'ar.edu.unrn.rankingservice' instead.
 
 # Getting Started
 

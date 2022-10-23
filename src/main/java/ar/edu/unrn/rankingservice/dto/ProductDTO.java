@@ -1,4 +1,4 @@
-package ar.edu.unrn.productservice.dto;
+package ar.edu.unrn.rankingservice.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;

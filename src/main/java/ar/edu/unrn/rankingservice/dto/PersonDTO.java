@@ -1,23 +1,20 @@
-package ar.edu.unrn.productservice.model;
+package ar.edu.unrn.rankingservice.dto;
 
-import javax.persistence.*;
+import ar.edu.unrn.rankingservice.model.PersonType;
 
-@Entity
-@Table(name = "persons")
-public class Person extends BaseEntity{
+public class PersonDTO {
 
+    private Long id;
     private String name;
     private String lastname;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "person_type")
     private PersonType personType;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    public Long getId() {
+        return id;
+    }
 
-    public Person() {
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -44,11 +41,4 @@ public class Person extends BaseEntity{
         this.personType = personType;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }

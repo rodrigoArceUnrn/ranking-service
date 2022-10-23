@@ -1,7 +1,6 @@
-package ar.edu.unrn.productservice.controller;
+package ar.edu.unrn.rankingservice.controller;
 
-import ar.edu.unrn.productservice.exception.ProductUnknownException;
-import ar.edu.unrn.productservice.service.ProductService;
+import ar.edu.unrn.rankingservice.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -12,26 +11,26 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
-@RequestMapping(value = "/products")
-public class ProductController {
+@RequestMapping(value = "/rankings")
+public class RankingController {
 
     @Autowired
-    ProductService productService;
+    RankingService rankingService;
 
 
     @GetMapping("/{id}")
     public ResponseEntity getProduct(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok().body(productService.getProductById(id));
-        } catch (ProductUnknownException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+//        try {
+            return ResponseEntity.ok().body("rankingService.getProductById(id)");
+//        } catch (RankingUnknownException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//        }
     }
 
     @GetMapping()
     public ResponseEntity getProducts(@PageableDefault Pageable pageable) {
         try {
-            return ResponseEntity.ok().body(productService.getProducts(pageable));
+            return ResponseEntity.ok().body("rankingService.getProducts(pageable)");
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

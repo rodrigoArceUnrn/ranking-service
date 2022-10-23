@@ -1,4 +1,4 @@
-package ar.edu.unrn.productservice.config;
+package ar.edu.unrn.rankingservice.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -17,7 +17,7 @@ public class OpenApiConfig {
     private Info info() {
         return new Info()
                 .title("API de servicio")
-                .description("API para obtener detalles de los productos")
+                .description("API para obtener detalles de los Ranking")
                 .version("1.0.0");
     }
 
