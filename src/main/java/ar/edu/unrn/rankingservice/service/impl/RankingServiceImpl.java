@@ -1,36 +1,52 @@
 package ar.edu.unrn.rankingservice.service.impl;
 
-import ar.edu.unrn.rankingservice.dto.ProductDTO;
-import ar.edu.unrn.rankingservice.model.Product;
+import ar.edu.unrn.rankingservice.dto.RankingDTO;
+import ar.edu.unrn.rankingservice.model.Ranking;
 import ar.edu.unrn.rankingservice.repository.RankingRepository;
 import ar.edu.unrn.rankingservice.service.RankingService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class RankingServiceImpl implements RankingService {
 
-    @Autowired
-    RankingRepository productRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+    final
+    RankingRepository rankingRepository;
+    private final ModelMapper modelMapper;
 
-//    @Override
-//    public ProductDTO getProductById(Long id) throws ProductUnknownException {
-//        Product product = productRepository.findProductById(id);
-//        if (product == null) throw new ProductUnknownException("No existe producto");
-//        return convertToDTO(product);
-//    }
-//
-//    @Override
-//    public Page<ProductDTO> getProducts(Pageable pageable) {
-//        Page<Product> page = productRepository.findAll(pageable);
-//        return page.map(this::convertToDTO);
-//    }
+    public RankingServiceImpl(RankingRepository rankingRepository, ModelMapper modelMapper) {
+        this.rankingRepository = rankingRepository;
+        this.modelMapper = modelMapper;
+    }
 
 
-    private ProductDTO convertToDTO(Product product) {
-        return modelMapper.map(product, ProductDTO.class);
+    private RankingDTO convertToDTO(Ranking ranking) {
+        return modelMapper.map(ranking, RankingDTO.class);
+    }
+
+    private Ranking convertToEntity(RankingDTO rankingDTO) {
+        return modelMapper.map(rankingDTO, Ranking.class);
+    }
+
+    @Override
+    public RankingDTO create(RankingDTO rankingDTO) {
+        rankingDTO.setDate(LocalDateTime.now());
+        Ranking ranking = convertToEntity(rankingDTO);
+        return convertToDTO(rankingRepository.save(ranking));
+    }
+
+    @Override
+    public Float getAverageByProductId(Long id) {
+        return rankingRepository.getAverageByProductId(id);
+    }
+
+    @Override
+    public Page<RankingDTO> getRankingsByProductId(Long id, Pageable pageable) {
+        Page<Ranking> page = rankingRepository.findRankingsByProductId(id, pageable);
+        return page.map(this::convertToDTO);
     }
 }

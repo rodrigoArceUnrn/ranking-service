@@ -1,8 +1,13 @@
 package ar.edu.unrn.rankingservice.service;
 
-public interface RankingService {
+import ar.edu.unrn.rankingservice.dto.RankingDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-//    ProductDTO getProductById(Long id) throws ProductUnknownException;
-//
-//    Page<ProductDTO> getProducts(Pageable pageable);
+public interface RankingService {
+    RankingDTO create(RankingDTO rankingDTO);
+
+    Float getAverageByProductId(Long id);
+
+    Page<RankingDTO> getRankingsByProductId(Long id,Pageable pageable);
 }
