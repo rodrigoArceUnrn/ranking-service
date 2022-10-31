@@ -4,7 +4,6 @@ import ar.edu.unrn.rankingservice.dto.RankingDTO;
 import ar.edu.unrn.rankingservice.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +32,7 @@ public class RankingController {
     @GetMapping("/product/{id}")
     public ResponseEntity getRankingsByProductId(@PathVariable Long id, Pageable pageable) {
         try {
-            return ResponseEntity.ok().body(rankingService.getRankingsByProductId(id,pageable));
+            return ResponseEntity.ok().body(rankingService.getRankingsByProductId(id, pageable));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

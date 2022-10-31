@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "rankings")
-public class Ranking extends BaseEntity{
+public class Ranking extends BaseEntity {
 
     @Column(name = "cant_star")
     private Float cantStar;

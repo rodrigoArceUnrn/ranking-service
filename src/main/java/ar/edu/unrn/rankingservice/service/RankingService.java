@@ -9,5 +9,5 @@ public interface RankingService {
 
     Float getAverageByProductId(Long id);
 
-    Page<RankingDTO> getRankingsByProductId(Long id,Pageable pageable);
+    Page<RankingDTO> getRankingsByProductId(Long id, Pageable pageable);
 }
