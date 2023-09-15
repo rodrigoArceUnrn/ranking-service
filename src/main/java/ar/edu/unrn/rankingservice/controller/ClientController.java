@@ -1,5 +1,6 @@
 package ar.edu.unrn.rankingservice.controller;
 
+import ar.edu.unrn.rankingservice.dto.ClientDTO;
 import ar.edu.unrn.rankingservice.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class ClientController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity getRankingsByProductId(@PathVariable Long id) {
+    public ResponseEntity<ClientDTO> getRankingsByProductId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok().body(clientService.findClientById(id));
         } catch (Exception e) {

@@ -3,6 +3,7 @@ package ar.edu.unrn.rankingservice.controller;
 import ar.edu.unrn.rankingservice.dto.RankingDTO;
 import ar.edu.unrn.rankingservice.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class RankingController {
 
 
     @PostMapping()
-    public ResponseEntity createRanking(@RequestBody RankingDTO rankingDTO) {
+    public ResponseEntity<RankingDTO> createRanking(@RequestBody RankingDTO rankingDTO) {
         try {
             RankingDTO result = rankingService.create(rankingDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(result);
@@ -30,7 +31,7 @@ public class RankingController {
     }
 
     @GetMapping("/product/{id}")
-    public ResponseEntity getRankingsByProductId(@PathVariable Long id, Pageable pageable) {
+    public ResponseEntity<Page<RankingDTO>> getRankingsByProductId(@PathVariable Long id, Pageable pageable) {
         try {
             return ResponseEntity.ok().body(rankingService.getRankingsByProductId(id, pageable));
         } catch (Exception e) {

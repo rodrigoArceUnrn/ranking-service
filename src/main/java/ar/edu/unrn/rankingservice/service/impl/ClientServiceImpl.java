@@ -4,7 +4,7 @@ import ar.edu.unrn.rankingservice.dto.ClientDTO;
 import ar.edu.unrn.rankingservice.model.Client;
 import ar.edu.unrn.rankingservice.repository.ClientRepository;
 import ar.edu.unrn.rankingservice.service.ClientService;
-import ar.edu.unrn.userservice.dto.ClientMessage;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,8 +13,11 @@ public class ClientServiceImpl implements ClientService {
     final
     ClientRepository clientRepository;
 
-    public ClientServiceImpl(ClientRepository clientRepository) {
+    final ModelMapper modelMapper;
+
+    public ClientServiceImpl(ClientRepository clientRepository, ModelMapper modelMapper) {
         this.clientRepository = clientRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -26,8 +29,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findClientById(Long id) {
-        return clientRepository.findClientById(id);
+    public ClientDTO findClientById(Long id) {
+        return modelMapper.map(clientRepository.findClientById(id), ClientDTO.class);
     }
 
 

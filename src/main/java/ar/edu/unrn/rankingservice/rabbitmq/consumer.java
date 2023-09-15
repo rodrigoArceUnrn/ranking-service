@@ -20,7 +20,7 @@ public class consumer {
 
     private Gson gson = new Gson();
 
-    @RabbitListener(queues = {"${rabbit.queue.name}"})
+    //@RabbitListener(queues = {"${rabbit.queue.name}"})
     public void receive(@Payload String message) {
         ClientDTO clientDTO = gson.fromJson(message, ClientDTO.class);
         log.info("Receive message {}", clientDTO);
