@@ -27,11 +27,4 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.save(client);
 
     }
-
-    @Override
-    public ClientDTO findClientById(Long id) {
-        return modelMapper.map(clientRepository.findClientById(id), ClientDTO.class);
-    }
-
-
 }

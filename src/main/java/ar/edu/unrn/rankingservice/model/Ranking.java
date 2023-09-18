@@ -13,7 +13,7 @@ public class Ranking extends BaseEntity {
     private LocalDateTime date;
     @Column(name = "product_id")
     private Long productId;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
 

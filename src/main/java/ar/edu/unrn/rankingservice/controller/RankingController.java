@@ -2,7 +2,7 @@ package ar.edu.unrn.rankingservice.controller;
 
 import ar.edu.unrn.rankingservice.dto.RankingDTO;
 import ar.edu.unrn.rankingservice.service.RankingService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,36 +15,42 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping(value = "/rankings")
 public class RankingController {
 
-    @Autowired
+    final
     RankingService rankingService;
+
+    public RankingController(RankingService rankingService) {
+        this.rankingService = rankingService;
+    }
 
 
     @PostMapping()
+    @Operation(summary = "Creación de puntuación a un producto.")
     public ResponseEntity<RankingDTO> createRanking(@RequestBody RankingDTO rankingDTO) {
         try {
-            RankingDTO result = rankingService.create(rankingDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(result);
-
+            rankingService.create(rankingDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @GetMapping("/product/{id}")
+    @Operation(summary = "Listar el ranking de un producto dado.")
     public ResponseEntity<Page<RankingDTO>> getRankingsByProductId(@PathVariable Long id, Pageable pageable) {
         try {
             return ResponseEntity.ok().body(rankingService.getRankingsByProductId(id, pageable));
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
     @GetMapping("/average/product/{id}")
-    public ResponseEntity getAverageByProductId(@PathVariable Long id) {
+    @Operation(summary = "Devuelve el promedio de la puntuación dada a una producto.")
+    public ResponseEntity<Float> getAverageByProductId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok().body(rankingService.getAverageByProductId(id));
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 }
