@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -24,6 +25,7 @@ public class RankingController {
 
 
     @PostMapping()
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     @Operation(summary = "Creación de puntuación a un producto.")
     public ResponseEntity<RankingDTO> createRanking(@RequestBody RankingDTO rankingDTO) {
         try {
@@ -35,6 +37,7 @@ public class RankingController {
     }
 
     @GetMapping("/product/{id}")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     @Operation(summary = "Listar el ranking de un producto dado.")
     public ResponseEntity<Page<RankingDTO>> getRankingsByProductId(@PathVariable Long id, Pageable pageable) {
         try {
@@ -45,6 +48,7 @@ public class RankingController {
     }
 
     @GetMapping("/average/product/{id}")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     @Operation(summary = "Devuelve el promedio de la puntuación dada a una producto.")
     public ResponseEntity<Float> getAverageByProductId(@PathVariable Long id) {
         try {
