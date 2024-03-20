@@ -25,8 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/rankings/**").hasRole("CLIENTE")
                 .and()
                 .addFilterBefore(new JwtTokenValidationFilter(jwtUtil, jwtConfig), UsernamePasswordAuthenticationFilter.class)
-                .csrf().disable()
-        ;
+                .csrf().disable();
 
     }
 }

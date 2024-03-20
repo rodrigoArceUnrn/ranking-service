@@ -7,9 +7,9 @@ import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
-    private String username;
-    private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final String username;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public CustomUserDetails(String username, String token, Collection<? extends GrantedAuthority> grantedAuthorities) {
         this.username = username;

@@ -17,8 +17,7 @@ public class OpenApiConfig {
     private Info info() {
         return new Info()
                 .title("API de servicio")
-                .description("API para obtener detalles de los Ranking")
+                .description("API para obtener detalles de las calificaciones")
                 .version("1.0.0");
     }
-
 }
