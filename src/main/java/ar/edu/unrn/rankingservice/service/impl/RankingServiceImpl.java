@@ -44,6 +44,9 @@ public class RankingServiceImpl implements RankingService {
         rankingDTO.setDate(LocalDateTime.now());
         Ranking ranking = convertToEntity(rankingDTO);
         Client client = clientRepository.findClientById(rankingDTO.getClient().getId());
+        if(client == null){
+            client = clientRepository.save(ranking.getClient());
+        }
         client.setName(rankingDTO.getClient().getName());
         ranking.setClient(client);
 
